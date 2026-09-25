@@ -25,10 +25,18 @@ class LocalEmbeddingIndex:
     def __init__(
         self,
         settings: Settings,
-        collection_name: str,
-        documents: list[dict[str, Any]],
-        persist_path: Path,
+        collection_name: str | None = None,
+        documents: list[dict[str, Any]] | None = None,
+        persist_path: Path | None = None,
     ):
+        collection_name = collection_name or settings.baseline_collection_name
+        if documents is None:
+            # Goi tat `LocalEmbeddingIndex(s, collection_name=...)`: nap documents tu manifest neu da build.
+            manifest_path = self._manifest_path_for(settings, collection_name)
+            documents = read_json(manifest_path)["documents"] if manifest_path.exists() else []
+        persist_path = persist_path or settings.paths.chroma_dir
+        persist_path.mkdir(parents=True, exist_ok=True)
+
         self.settings = settings
         self.collection_name = collection_name
         self.documents = documents
@@ -36,9 +44,25 @@ class LocalEmbeddingIndex:
         self.embedding_backend = "chroma"
         self.embedding_model = MiniLMEmbeddings(settings.embedding_model)
         self.client = chromadb.PersistentClient(path=str(persist_path))
-        self.collection = self.client.get_collection(name=collection_name)
+        self.collection = self.client.get_or_create_collection(
+            name=collection_name,
+            configuration={"hnsw": {"space": "cosine"}},
+        )
         self.documents_by_paper_id = {document["paper_id"].lower(): document for document in documents}
         self.documents_by_title = {document["title"].lower(): document for document in documents}
+
+    @staticmethod
+    def _collection_manifests(settings: Settings) -> dict[str, Path]:
+        return {
+            settings.baseline_collection_name: settings.paths.embeddings_json,
+            settings.corrupted_collection_name: settings.paths.corrupted_embeddings_json,
+            settings.repaired_collection_name: settings.paths.repaired_embeddings_json,
+        }
+
+    @classmethod
+    def _manifest_path_for(cls, settings: Settings, collection_name: str) -> Path:
+        default = settings.paths.embeddings_json.with_name(f"{safe_slug(collection_name)}.json")
+        return cls._collection_manifests(settings).get(collection_name, default)
 
     @staticmethod
     def _build_documents(df: pd.DataFrame) -> list[dict[str, Any]]:
@@ -164,6 +188,18 @@ class LocalEmbeddingIndex:
                 )
             )
         return scored
+
+    def build_from_clean(self, df: pd.DataFrame | None = None) -> "LocalEmbeddingIndex":
+        """Build lai collection hien tai tu clean data (mac dinh doc settings.paths.clean_json)."""
+        if df is None:
+            df = pd.read_json(self.settings.paths.clean_json)
+        manifest_path = self._manifest_path_for(self.settings, self.collection_name)
+        built = self.build(df, self.settings, embeddings_output_path=manifest_path)
+        self.__dict__.update(built.__dict__)
+        return self
+
+    def semantic_search(self, query: str, top_k: int | None = None) -> list[SearchResult]:
+        return self.search(query, top_k=top_k)
 
     def lookup(self, value: str) -> dict[str, Any] | None:
         needle = value.strip().lower()
