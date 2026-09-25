@@ -7,7 +7,7 @@
 | Họ và tên       | Đoàn Anh Quân             |
 | MSSV               | 2A202602803                |
 | Khóa/Lớp         | K4                         |
-| Tên nhóm         | [Tên hoặc mã nhóm]     |
+| Tên nhóm         | nhóm chót                 |
 | Vai trò chính    | Baseline orchestration, corruption, repair & comparison owner (Pha 4, 5, 6 / CP3, CP4, CP5) |
 | Repository         | https://github.com/DAQuan-VinAI/K4-L3A-Day10-Data-Pipeline-Data-Observability |
 | Ngày hoàn thành | 2026-09-25                 |

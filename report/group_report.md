@@ -5,7 +5,7 @@
 | Thông tin         | Nội dung                  |
 | ------------------ | -------------------------- |
 | Khóa/Lớp         | K4                         |
-| Tên nhóm         | [Tên hoặc mã nhóm]     |
+| Tên nhóm         | nhóm chót                 |
 | Repository         | https://github.com/DAQuan-VinAI/K4-L3A-Day10-Data-Pipeline-Data-Observability |
 | Ngày hoàn thành | 2026-09-25                 |
 
