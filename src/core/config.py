@@ -41,6 +41,11 @@ class Paths:
     repaired_answers: Path
     comparison_report: Path
 
+    @property
+    def test_set_json(self) -> Path:
+        """Alias cua eval_testset (ten dung trong lenh kiem tra CP2)."""
+        return self.eval_testset
+
 
 @dataclass(frozen=True)
 class Settings:
