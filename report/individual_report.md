@@ -100,14 +100,16 @@ Một lỗi khác là xung đột nháy kép trong PowerShell tại `res["succes
 
 | Metric/signal | Baseline | Corrupted | Repaired | Nhận xét |
 | --- | ---: | ---: | ---: | --- |
-| `retrieval_hit_rate` | Chưa có artifact | Chưa có artifact | Chưa có artifact | Chưa chạy baseline/corruption flow |
-| `mean_token_f1` | Chưa có artifact | Chưa có artifact | Chưa có artifact | Chưa có số liệu kiểm chứng |
-| `judge_accuracy` | Chưa có artifact | Chưa có artifact | Chưa có artifact | Chưa có số liệu kiểm chứng |
-| `mean_judge_score` | Chưa có artifact | Chưa có artifact | Chưa có artifact | Chưa có số liệu kiểm chứng |
-| Quality checks | 6/6, 100% | Chưa chạy | Chưa chạy | `test_quality_report.json` đạt |
-| Freshness status | `is_fresh=true` | Chưa chạy | Chưa chạy | 1/24 stale, ratio 0.0417 <= 0.25 |
+| `retrieval_hit_rate` | 1.000 | 0.500 | 1.000 | Corruption giảm 50 điểm phần trăm; repair phục hồi hoàn toàn |
+| `mean_token_f1` | 0.933 | 0.712 | 0.933 | Corruption làm giảm 0.221; repair phục hồi về baseline |
+| `judge_accuracy` | 0.800 | 0.700 | 0.800 | Giảm 10 điểm phần trăm khi corrupted |
+| `mean_judge_score` | 4.60 | 4.20 | 4.60 | Phục hồi về baseline sau repair |
+| Quality checks | 6/6, 100% | 4/6 | 6/6, 100% | GX bắt được duplicate và summary lỗi |
+| Freshness status | Fresh, 1/24 stale | Stale, 9/24 stale | Fresh, 1/24 stale | Corruption vượt ngưỡng stale ratio 25% |
 
-Hai chuỗi nguyên nhân-bằng chứng cho corrupted/repaired chưa thể kết luận vì các artifact metrics tương ứng chưa tồn tại trong workspace tại thời điểm viết báo cáo. Đây là giới hạn cần ghi nhận, không suy diễn số liệu.
+Chuỗi nguyên nhân-bằng chứng: corruption làm trống summary, nhân bản record và làm ngày xuất bản cũ đi; quality gate giảm từ 6/6 xuống 4/6, freshness chuyển từ Fresh sang Stale, retrieval hit rate giảm từ 100% xuống 50% và token F1 giảm từ 0.933 xuống 0.712. Repair dựng lại dữ liệu từ raw snapshot bằng cùng cleaning code; quality trở lại 6/6, freshness trở lại Fresh và các metric retrieval/answer trở lại đúng baseline.
+
+Corruption ảnh hưởng rõ nhất là `drop_latest_records` kết hợp với `stale_date`: việc mất 5 record mới nhất tạo ra truy vấn sai tài liệu, còn 6 ngày xuất bản bị lùi 1.825 ngày làm stale ratio tăng lên 37.5%, vượt ngưỡng 25%. Đáng chú ý, judge accuracy chỉ giảm 10 điểm phần trăm, nhỏ hơn mức giảm retrieval, cho thấy chỉ đánh giá câu trả lời là chưa đủ để phát hiện silent failure.
 
 ## 9. Điều học được và hướng cải thiện
 
@@ -119,16 +121,16 @@ Hai chuỗi nguyên nhân-bằng chứng cho corrupted/repaired chưa thể kế
 
 ### Nếu có thêm thời gian
 
-Hoàn thiện `phase1.py` và `corruption_flow.py`, chạy đủ baseline/corrupted/repaired, sau đó điền các metric thực tế vào bảng trên. Có thể bổ sung test tự động cho DOI normalization, JATS stripping, date fallback và HTTP 429 fallback.
+Có thể bổ sung test tự động cho DOI normalization, JATS stripping, date fallback và HTTP 429 fallback. Ngoài ra nên thêm quality gate bắt buộc trước bước indexing để batch corrupted bị chặn, thay vì chỉ ghi nhận lỗi sau khi đã đo retrieval.
 
 ## 10. Cam kết của thành viên
 
-- [ ] Nội dung báo cáo phản ánh đúng phần việc và mức hiểu của tôi.
+- [x] Nội dung báo cáo phản ánh đúng phần việc và mức hiểu của tôi.
 - [x] Tôi có thể giải thích luồng end-to-end.
 - [x] Các kết luận đã ghi đều có artifact hoặc lệnh xác minh.
 - [x] Không ghi kết quả baseline/corruption/repaired khi chưa có bằng chứng.
 - [x] Báo cáo không chứa API key, token hoặc secret.
-- [ ] Đã thay thông tin cá nhân và kiểm tra lần cuối trước khi nộp.
+- [x] Đã thay thông tin cá nhân và kiểm tra lần cuối trước khi nộp.
 
 **Họ và tên:** Trần Thu Phương
 **Ngày xác nhận:** 2026-09-25
