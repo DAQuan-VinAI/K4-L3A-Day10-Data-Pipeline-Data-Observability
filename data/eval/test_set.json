@@ -1,0 +1,104 @@
+[
+  {
+    "id": "q01",
+    "type": "summary",
+    "question_type": "summary",
+    "question": "What is the main finding of the paper 'Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "ground_truth": "Static benchmarks fail to capture domain drift in enterprise knowledge bases.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671812"
+    ]
+  },
+  {
+    "id": "q02",
+    "type": "summary",
+    "question_type": "summary",
+    "question": "What is the main finding of the paper 'Multi-Agent Consensus for High-Stakes Fact Verification'?",
+    "ground_truth": "A single LLM is susceptible to confirmation bias when evaluating retrieved evidence.",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671808"
+    ]
+  },
+  {
+    "id": "q03",
+    "type": "authors",
+    "question_type": "authors",
+    "question": "Who authored the paper 'Freshness SLAs for Real-Time LLM Knowledge Augmentation'?",
+    "ground_truth": "Bao Do, Linh Ngo",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671804"
+    ]
+  },
+  {
+    "id": "q04",
+    "type": "authors",
+    "question_type": "authors",
+    "question": "Who authored the paper 'Synthetic Corruption Testing: Stress-Testing Vector Search Robustness'?",
+    "ground_truth": "Kien Duong, Vy Ly",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671807"
+    ]
+  },
+  {
+    "id": "q05",
+    "type": "date",
+    "question_type": "date",
+    "question": "When was the paper 'Data Observability and Quality Gates for Production RAG Systems' published?",
+    "ground_truth": "2026-06-12",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671802"
+    ]
+  },
+  {
+    "id": "q06",
+    "type": "date",
+    "question_type": "date",
+    "question": "When was the paper 'Automated Data Quality Profiling with Great Expectations in CI/CD' published?",
+    "ground_truth": "2026-06-08",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671810"
+    ]
+  },
+  {
+    "id": "q07",
+    "type": "category",
+    "question_type": "category",
+    "question": "What categories does the paper 'Agentic Retrieval-Augmented Generation for Knowledge-Intensive Tasks' belong to?",
+    "ground_truth": "Artificial Intelligence, Information Retrieval",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671801"
+    ]
+  },
+  {
+    "id": "q08",
+    "type": "category",
+    "question_type": "category",
+    "question": "What categories does the paper 'Hybrid Search Architectures: Combining BM25 with Dense Representations' belong to?",
+    "ground_truth": "Information Retrieval, Algorithms",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671811"
+    ]
+  },
+  {
+    "id": "q09",
+    "type": "multi_hop",
+    "question_type": "multi_hop",
+    "question": "Who authored the paper 'Semantic Layer Integration for Agentic Text-to-SQL Pipelines', and when was the paper 'Chunking Strategies for Technical Documentation Retrieval' published?",
+    "ground_truth": "Huy Dinh, Trang Vo; 2026-04-30",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671806",
+      "10.1145/3637528.3671809"
+    ]
+  },
+  {
+    "id": "q10",
+    "type": "multi_hop",
+    "question_type": "multi_hop",
+    "question": "Who authored the paper 'Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing', and when was the paper 'Evaluating Retrieval Precision with Token F1 and LLM Judges' published?",
+    "ground_truth": "Duc Vu, Thao Dang; 2026-03-28",
+    "ground_truth_doc_ids": [
+      "10.1145/3637528.3671803",
+      "10.1145/3637528.3671805"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "question": "What is the main finding of the paper 'Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines'?",
+    "answer": "The main finding of the paper \"Continuous Benchmark Evaluation for Enterprise Retrieval Pipelines\" is that static benchmarks are inadequate for capturing domain drift in enterprise knowledge bases. The authors propose a synthetic test generator that automatically creates paired evaluation sets whenever new corpora are ingested, addressing the limitations of traditional benchmarking methods."
+  },
+  {
+    "question": "What is the main finding of the paper 'Multi-Agent Consensus for High-Stakes Fact Verification'?",
+    "answer": "The main finding of the paper \"Multi-Agent Consensus for High-Stakes Fact Verification\" is that a single large language model (LLM) is prone to confirmation bias when assessing retrieved evidence. The authors propose a multi-agent debate architecture in which specialized verifier agents critique and corroborate citations, enhancing the reliability of fact verification in high-stakes scenarios."
+  }
+]

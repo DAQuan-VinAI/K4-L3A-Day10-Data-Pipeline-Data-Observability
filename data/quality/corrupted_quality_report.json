@@ -1,14 +1,14 @@
 {
-  "report_name": "test",
-  "checked_at": "2026-09-25T07:47:38.896517+00:00",
+  "report_name": "corrupted",
+  "checked_at": "2026-09-25T08:09:48.545157+00:00",
   "engine": "great_expectations 1.18.0",
-  "success": true,
+  "success": false,
   "row_count": 24,
   "statistics": {
     "evaluated_expectations": 6,
-    "successful_expectations": 6,
-    "unsuccessful_expectations": 0,
-    "success_percent": 100.0
+    "successful_expectations": 4,
+    "unsuccessful_expectations": 2,
+    "success_percent": 66.66666666666666
   },
   "expectations": [
     {
@@ -30,10 +30,21 @@
     {
       "expectation": "expect_column_values_to_be_unique",
       "column": "paper_id",
-      "success": true,
+      "success": false,
       "observed_value": null,
-      "unexpected_count": 0,
-      "partial_unexpected_list": []
+      "unexpected_count": 10,
+      "partial_unexpected_list": [
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671816",
+        "10.1145/3637528.3671814",
+        "10.1145/3637528.3671813",
+        "10.1145/3637528.3671809",
+        "10.1145/3637528.3671813",
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671814",
+        "10.1145/3637528.3671809",
+        "10.1145/3637528.3671816"
+      ]
     },
     {
       "expectation": "expect_column_values_to_not_be_null",
@@ -54,21 +65,26 @@
     {
       "expectation": "expect_column_value_lengths_to_be_between",
       "column": "summary",
-      "success": true,
+      "success": false,
       "observed_value": null,
-      "unexpected_count": 0,
-      "partial_unexpected_list": []
+      "unexpected_count": 4,
+      "partial_unexpected_list": [
+        "",
+        "",
+        "",
+        ""
+      ]
     }
   ],
   "freshness": {
-    "checked_at": "2026-09-25T07:47:38.897431+00:00",
-    "latest_published": "2026-07-22",
-    "oldest_published": "2026-03-28",
-    "stale_rows": 1,
+    "checked_at": "2026-09-25T08:09:48.546218+00:00",
+    "latest_published": "2026-06-12",
+    "oldest_published": "2021-04-19",
+    "stale_rows": 9,
     "total_rows": 24,
-    "stale_ratio": 0.0417,
+    "stale_ratio": 0.375,
     "threshold_days": 180,
     "max_stale_ratio": 0.25,
-    "is_fresh": true
+    "is_fresh": false
   }
 }
