@@ -1,6 +1,6 @@
 {
-  "report_name": "test",
-  "checked_at": "2026-09-25T07:47:38.896517+00:00",
+  "report_name": "repaired",
+  "checked_at": "2026-09-25T08:10:09.765885+00:00",
   "engine": "great_expectations 1.18.0",
   "success": true,
   "row_count": 24,
@@ -61,7 +61,7 @@
     }
   ],
   "freshness": {
-    "checked_at": "2026-09-25T07:47:38.897431+00:00",
+    "checked_at": "2026-09-25T08:10:09.766299+00:00",
     "latest_published": "2026-07-22",
     "oldest_published": "2026-03-28",
     "stale_rows": 1,

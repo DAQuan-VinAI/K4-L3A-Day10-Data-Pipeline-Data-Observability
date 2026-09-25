@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-25T08:09:48.505451+00:00",
+  "seed": 42,
+  "input_rows": 24,
+  "output_rows": 24,
+  "scenario_count": 6,
+  "scenarios": [
+    {
+      "scenario": "drop_latest_records",
+      "description": "Bo 5 bai bao moi nhat (20%)",
+      "affected_rows": 5,
+      "paper_ids": [
+        "10.1145/3637528.3671812",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671802"
+      ]
+    },
+    {
+      "scenario": "blank_summary",
+      "description": "Xoa trang summary",
+      "affected_rows": 3,
+      "paper_ids": [
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671817"
+      ]
+    },
+    {
+      "scenario": "inject_text_noise",
+      "description": "Chen ky tu rac vao summary/text_for_embedding",
+      "affected_rows": 3,
+      "paper_ids": [
+        "10.1145/3637528.3671818",
+        "10.1145/3637528.3671805",
+        "10.1145/3637528.3671822"
+      ],
+      "noise": [
+        "%%% %%% ~~~ @@## ~~~ %%%",
+        "~~~ zzkq %%% <null> 0xDEADBEEF @@##",
+        "ipsum zzkq \u00bf\u00bf 0xDEADBEEF ipsum %%%"
+      ]
+    },
+    {
+      "scenario": "truncate_title",
+      "description": "Cat title con 7 ky tu",
+      "affected_rows": 3,
+      "paper_ids": [
+        "10.1145/3637528.3671814",
+        "10.1145/3637528.3671823",
+        "10.1145/3637528.3671815"
+      ],
+      "original_titles": [
+        "Advanced Perspectives on Data Observability and Quality Gates for Production RAG Systems",
+        "Advanced Perspectives on Hybrid Search Architectures: Combining BM25 with Dense Representations",
+        "Advanced Perspectives on Mitigating Ghost Vectors in Dense Retrieval via Idempotent Indexing"
+      ]
+    },
+    {
+      "scenario": "stale_date",
+      "description": "Lui published 1825 ngay (~5 nam)",
+      "affected_rows": 6,
+      "paper_ids": [
+        "10.1145/3637528.3671809",
+        "10.1145/3637528.3671813",
+        "10.1145/3637528.3671819",
+        "10.1145/3637528.3671803",
+        "10.1145/3637528.3671806",
+        "10.1145/3637528.3671820"
+      ],
+      "original_published": [
+        "2026-04-30",
+        "2026-06-01",
+        "2026-06-07",
+        "2026-04-18",
+        "2026-05-02",
+        "2026-06-08"
+      ],
+      "corrupted_published": [
+        "2021-05-01",
+        "2021-06-02",
+        "2021-06-08",
+        "2021-04-19",
+        "2021-05-03",
+        "2021-06-09"
+      ]
+    },
+    {
+      "scenario": "duplicate_rows",
+      "description": "Nhan doi ban ghi (trung paper_id)",
+      "affected_rows": 5,
+      "paper_ids": [
+        "10.1145/3637528.3671813",
+        "10.1145/3637528.3671821",
+        "10.1145/3637528.3671814",
+        "10.1145/3637528.3671809",
+        "10.1145/3637528.3671816"
+      ]
+    }
+  ]
+}
